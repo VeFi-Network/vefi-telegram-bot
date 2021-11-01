@@ -12,7 +12,9 @@ class UserModel {
   }
 
   addUser({ telegramId, web3Address }) {
-    return Promise.resolve(this.model.create({ telegramId, web3Address }));
+    return Promise.resolve(
+      this.model.create({ telegramId, web3Address, joinTimestamp: Date.now() })
+    );
   }
 
   findAllUsers() {
