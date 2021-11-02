@@ -37,4 +37,5 @@ module.exports = function () {
       log(error.message);
     }
   });
+  bot.launch();
 };
