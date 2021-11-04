@@ -17,6 +17,10 @@ class UserModel {
     );
   }
 
+  findByTelegramId(telegramId) {
+    return Promise.resolve(this.model.findOne({ telegramId }));
+  }
+
   findAllUsers() {
     return Promise.resolve(this.model.find());
   }

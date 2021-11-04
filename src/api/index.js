@@ -3,7 +3,9 @@ const { default: Web3 } = require("web3");
 const exec = require("../executors");
 const env = require("../env");
 
-const web3 = new Web3("");
+const web3 = new Web3(
+  "https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet"
+);
 const airdrop = new web3.eth.Contract(null, env.CONTRACT_ADDRESS);
 
 class API {

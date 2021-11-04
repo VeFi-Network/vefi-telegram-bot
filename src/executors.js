@@ -8,6 +8,14 @@ module.exports.addUser = async function (params) {
   return user;
 };
 
+module.exports.findByTelegramId = async function (telegramId) {
+  const user = await db.models.users.findByTelegramId(telegramId);
+
+  if (user.toJSON) return user.toJSON();
+
+  return user;
+};
+
 module.exports.findAllAndLimit = async function (page, limit) {
   const all = await db.models.users.findAllUsers();
   return all
@@ -44,7 +52,7 @@ module.exports.findFromTimestampAndLimit = async function (
     .slice((page - 1) * limit, page * limit);
 };
 
-module.exports.findFromTimestamp = function (timestamp) {
+module.exports.findFromTimestamp = async function (timestamp) {
   const all = await db.models.users.findFromTimeStamp(timestamp);
   return all.map(item => {
     if (item.toJSON) return item.toJSON();
