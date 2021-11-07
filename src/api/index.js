@@ -1,5 +1,5 @@
 const { Transaction: Tx } = require("ethereumjs-tx");
-const { default: Web3 } = require("web3");
+const Web3 = require("web3");
 const exec = require("../executors");
 const abi = require("../AirdropABI.json");
 
