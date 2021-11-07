@@ -5,7 +5,7 @@ const environment = require("./env");
 const bot = new Telegraf(environment.BOT_TOKEN);
 const strings = require("./strings");
 const exec = require("./executors");
-const abi = require("./ABI.json");
+const abi = require("./TokenABI.json");
 
 const web3 = new Web3(
   "https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet"

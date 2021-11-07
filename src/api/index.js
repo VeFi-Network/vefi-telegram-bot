@@ -2,11 +2,15 @@ const { Transaction: Tx } = require("ethereumjs-tx");
 const { default: Web3 } = require("web3");
 const exec = require("../executors");
 const env = require("../env");
+const abi = require("../AirdropABI.json");
 
 const web3 = new Web3(
   "https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet"
 );
-const airdrop = new web3.eth.Contract(null, env.CONTRACT_ADDRESS);
+const airdrop = new web3.eth.Contract(
+  abi,
+  "0x4dCE4c7902fed6f3874901348595505B32752e05"
+);
 
 class API {
   static async addEligibleCandidates(request, response) {
@@ -14,14 +18,14 @@ class API {
       const all = (
         await exec.findAllAndLimit(
           parseInt(request.query.page || "1"),
-          parseInt(request.query.limit || "2000")
+          parseInt(request.query.limit || "100")
         )
       ).map(item => ({
         _recipient: item.web3Address,
-        _amount: web3.utils.toWei("5000")
+        _amount: web3.utils.toWei(request.body.amountEach)
       }));
       const nonce = web3.utils.toHex(
-        await web3.eth.getTransactionCount(env.ETH_ADDRESS)
+        await web3.eth.getTransactionCount(request.body.address)
       );
       const data = airdrop.methods.addRecipients(all).encodeABI();
       const opts = {
