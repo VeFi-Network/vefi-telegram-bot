@@ -1,7 +1,6 @@
 const { Transaction: Tx } = require("ethereumjs-tx");
 const { default: Web3 } = require("web3");
 const exec = require("../executors");
-const env = require("../env");
 const abi = require("../AirdropABI.json");
 
 const web3 = new Web3(
@@ -31,7 +30,7 @@ class API {
       const opts = {
         nonce,
         data,
-        to: env.CONTRACT_ADDRESS,
+        to: "0x4dCE4c7902fed6f3874901348595505B32752e05",
         gasLimit: web3.utils.toHex(request.body.gasLimit),
         gasPrice: web3.utils.toHex(
           web3.utils.toWei(request.body.gasPrice.toString(), "gwei")
